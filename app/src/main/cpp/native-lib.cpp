@@ -44,9 +44,6 @@ Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nsubscribeListener(JNIEnv *env, 
 
     ObserverChain *tmpt = new ObserverChain(store_Wlistener, store_method, store_methodVAL);
 
-//    tmpt->onFXequalizerSetEnabled(eQnumber, state);
-//    ALOGD("IRenderer::iniGasketChain ",
-//          " ini sp_equalizerSetEnabled");
     store_Wlistener_vector.push_back(tmpt);
 
 
