@@ -9,3 +9,5 @@
 /captures
 .externalNativeBuild
 gradle/
+/.idea/
+/app/.cxx/

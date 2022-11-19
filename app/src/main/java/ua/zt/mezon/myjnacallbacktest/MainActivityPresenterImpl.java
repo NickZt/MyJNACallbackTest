@@ -6,7 +6,7 @@ class MainActivityPresenterImpl implements MainActivityPresenter,JNIListener {
     private final WeakReference<MainActivity> mMainActivity;
 
     public MainActivityPresenterImpl(MainActivity mainActivity) {
-        mMainActivity = new WeakReference<MainActivity>(mainActivity);
+        mMainActivity = new WeakReference<>(mainActivity);
     }
 
 
@@ -17,6 +17,6 @@ class MainActivityPresenterImpl implements MainActivityPresenter,JNIListener {
 
     @Override
     public void onAcceptMessageVal(int messVal) {
-
+// not needed for this demo and using in a same way as in a message listener
     }
 }

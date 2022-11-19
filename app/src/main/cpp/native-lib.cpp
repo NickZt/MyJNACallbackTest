@@ -4,11 +4,10 @@
 #include "ObserverChain.h"
 
 //#include "std"
-std::string hello = "Hello from C++";
 
 #include <vector>
 
-static JavaVM *jvm = NULL;
+static JavaVM *jvm = nullptr;
 
 
 std::vector<ObserverChain *> store_Wlistener_vector;
@@ -18,15 +17,6 @@ JNIEnv *store_env;
 
 void txtCallback(JNIEnv *env, const _jstring *message_);
 
-extern "C" JNIEXPORT jstring
-
-JNICALL
-Java_ua_zt_mezon_myjnacallbacktest_MainActivity_stringFromJNI(
-        JNIEnv *env,
-        jobject /* this */) {
-
-    return env->NewStringUTF(hello.c_str());
-}
 extern "C"
 JNIEXPORT void JNICALL
 Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nsubscribeListener(JNIEnv *env, jobject instance,
@@ -48,7 +38,7 @@ Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nsubscribeListener(JNIEnv *env, 
 
 
     __android_log_print(ANDROID_LOG_VERBOSE, "GetEnv:", " Subscribe to Listener  OK \n");
-    if (NULL == store_method) return;
+    if (nullptr == store_method) return;
 
 
 }
@@ -56,10 +46,10 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_ua_zt_mezon_myjnacallbacktest_MainActivity_ndismissListener(JNIEnv *env, jobject instance) {
     if (!store_Wlistener_vector.empty()) {
-        for (int i = 0; i < store_Wlistener_vector.size(); i++) {
-            env->DeleteWeakGlobalRef(store_Wlistener_vector[i]->store_Wlistener);
-            store_Wlistener_vector[i]->store_method = NULL;
-            store_Wlistener_vector[i]->store_methodVAL = NULL;
+        for (auto &i: store_Wlistener_vector) {
+            env->DeleteWeakGlobalRef(i->store_Wlistener);
+            i->store_method = NULL;
+            i->store_methodVAL = NULL;
         }
         store_Wlistener_vector.clear();
     }
@@ -118,9 +108,9 @@ Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nonNextListener(JNIEnv *env, job
 
 void txtCallback(JNIEnv *env, const _jstring *message_) {
     if (!store_Wlistener_vector.empty()) {
-        for (int i = 0; i < store_Wlistener_vector.size(); i++) {
-            env->CallVoidMethod(store_Wlistener_vector[i]->store_Wlistener,
-                                store_Wlistener_vector[i]->store_method, message_);
+        for (auto &i: store_Wlistener_vector) {
+            env->CallVoidMethod(i->store_Wlistener,
+                                i->store_method, message_);
         }
 
     }
