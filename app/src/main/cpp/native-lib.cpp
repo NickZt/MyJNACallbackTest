@@ -19,7 +19,7 @@ void txtCallback(JNIEnv *env, const _jstring *message_);
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nsubscribeListener(JNIEnv *env, jobject instance,
+Java_ua_zt_mezon_myjnacallbacktest_MainActivityViewModel_nsubscribeListener(JNIEnv *env, jobject instance,
                                                                    jobject listener) {
 
     env->GetJavaVM(&jvm); //store jvm reference for later call
@@ -44,7 +44,7 @@ Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nsubscribeListener(JNIEnv *env, 
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_ua_zt_mezon_myjnacallbacktest_MainActivity_ndismissListener(JNIEnv *env, jobject instance) {
+Java_ua_zt_mezon_myjnacallbacktest_MainActivityViewModel_ndismissListener(JNIEnv *env, jobject instance) {
     if (!store_Wlistener_vector.empty()) {
         for (auto &i: store_Wlistener_vector) {
             env->DeleteWeakGlobalRef(i->store_Wlistener);
@@ -98,7 +98,7 @@ void test_string_callback_fom_c(char *val) {
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_ua_zt_mezon_myjnacallbacktest_MainActivity_nonNextListener(JNIEnv *env, jobject instance,
+Java_ua_zt_mezon_myjnacallbacktest_MainActivityViewModel_nonNextListener(JNIEnv *env, jobject instance,
                                                                 jstring message_) {
 
 
@@ -115,3 +115,4 @@ void txtCallback(JNIEnv *env, const _jstring *message_) {
 
     }
 }
+
