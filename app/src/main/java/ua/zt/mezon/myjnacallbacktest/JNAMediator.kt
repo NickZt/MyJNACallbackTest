@@ -1,6 +1,6 @@
 package ua.zt.mezon.myjnacallbacktest
 
-interface JNIListener {
+interface JNAMediator {
     fun onAcceptMessage(string: String)
     fun onAcceptMessageVal(messVal: Int)
 }
